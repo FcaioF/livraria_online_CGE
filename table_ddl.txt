@@ -1,0 +1,13 @@
+create table public.books(
+process_date timestamp NOT NULL ,
+book_category varchar(30) NOT NULL ,
+book_title varchar(30) NOT NULL,
+book_price varchar(30) NOT NULL,
+book_description TEXT NOT NULL,
+upc_number varchar(30) NOT NULL,
+product_type varchar(30) NOT NULL,
+no_tax_price decimal,
+w_tax_price decimal,
+total_available varchar(30) NOT NULL,
+book_star varchar(30) NOT NULL
+);

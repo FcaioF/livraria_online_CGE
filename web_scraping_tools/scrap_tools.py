@@ -1,6 +1,9 @@
-# Libs
+"""
+Libs
+"""
 import requests
 from bs4 import BeautifulSoup
+import datetime
 
 """
 -- format functions
@@ -8,10 +11,11 @@ from bs4 import BeautifulSoup
 def format_string(text):
     _formated_text= (
         text
-        .replace(',','')
-        .replace('.','')
-        .replace("'","")
-        .replace('—','')
+        .replace(',', '')
+        .replace('.', '')
+        .replace("'", "")
+        .replace('—', '')
+        .replace('\\', '')
         .strip()
     )
     return _formated_text
@@ -23,7 +27,20 @@ def replace_monetary(text):
         .split(')')[-1]
         .strip()
     )
+    if(_formated_text == 'Tax0.00'):
+        return '0.00'
     return _formated_text
+
+def format_available_field(text):
+    try:
+        format_text = (
+            text
+            .split()[2]
+            .replace('(','')
+        )
+        return format_text
+    except:
+        return text
 
 """
 -- scrap tools
@@ -33,6 +50,7 @@ def scrap_site_html(site_url):
     receive the site url as parameter
     and request the html code
     '''
+    print('requesting.. -->',site_url)
     _siteResponse = requests.get(site_url)
     _soup = BeautifulSoup(_siteResponse.content,'html.parser')
 
@@ -142,6 +160,7 @@ def scrap_books_attribute(base_link):
     """
     _final_list= {}
 
+    _final_list['process_date']= str(datetime.datetime.now())
     _final_list['book_category']= _temp_list[4]
     _final_list['book_title']= format_string(_temp_list[6])
     _final_list['book_price']= replace_monetary(_temp_list[7])
@@ -150,7 +169,7 @@ def scrap_books_attribute(base_link):
     _final_list['product_type']= str(_temp_list[14]).replace('Product Type','').lower()
     _final_list['no_tax_price']= replace_monetary(_temp_list[15])
     _final_list['w_tax_price']= replace_monetary(_temp_list[16])
-    _final_list['total_available']= _temp_list[19].split()[2].replace('(','')
+    _final_list['total_available']= format_available_field(_temp_list[19])
     _final_list['book_star']= scrap_star_rating(_html_code_filtered)
 
     return _final_list
