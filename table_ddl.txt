@@ -1,13 +1,14 @@
-create table public.books(
-process_date timestamp NOT NULL ,
-book_category varchar(30) NOT NULL ,
-book_title varchar(30) NOT NULL,
-book_price varchar(30) NOT NULL,
-book_description TEXT NOT NULL,
-upc_number varchar(30) NOT NULL,
-product_type varchar(30) NOT NULL,
-no_tax_price decimal,
-w_tax_price decimal,
-total_available varchar(30) NOT NULL,
-book_star varchar(30) NOT NULL
+CREATE TABLE public.books (
+                              ID_BOOK SERIAL PRIMARY KEY,
+                              DT_PROCESS_DATE TIMESTAMP NOT NULL,
+                              DS_BOOK_CATEGORY VARCHAR(300) NOT NULL,
+                              DS_BOOK_TITLE VARCHAR(300) NOT NULL,
+                              NR_BOOK_PRICE VARCHAR(300) NOT NULL,
+                              DS_BOOK_DESCRIPTION TEXT NOT NULL,
+                              NR_UPC_NUMBER VARCHAR(300) NOT NULL,
+                              TP_PRODUCT_TYPE VARCHAR(300) NOT NULL,
+                              NR_NO_TAX_PRICE DECIMAL,
+                              NR_W_TAX_PRICE DECIMAL,
+                              NR_TOTAL_AVAILABLE VARCHAR(300) NOT NULL,
+                              DS_BOOK_STAR VARCHAR(300) NOT NULL
 );
