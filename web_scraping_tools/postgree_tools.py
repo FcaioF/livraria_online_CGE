@@ -34,7 +34,7 @@ def insert_data(db_connection,data):
     pre_processing= [ (f"'{i}',") for i in list(data.values())[:-1] ]
     pre_processing.append(f"'{ list(data.values())[-1] }');")
     concat_string= str('\n'.join(pre_processing))
-    insert_template= str('INSERT INTO books(process_date,book_category,book_title,book_price,book_description,upc_number,product_type,no_tax_price,w_tax_price,total_available,book_star) VALUES (')
+    insert_template= str('INSERT INTO books(DT_PROCESS_DATE,DS_BOOK_CATEGORY,DS_BOOK_TITLE,NR_BOOK_PRICE,DS_BOOK_DESCRIPTION,NR_UPC_NUMBER,TP_PRODUCT_TYPE,NR_NO_TAX_PRICE,NR_W_TAX_PRICE,NR_TOTAL_AVAILABLE,DS_BOOK_STAR) VALUES (')
     #execute the command in the database
 
     try:
@@ -52,7 +52,9 @@ def insert_data(db_connection,data):
 
         # db_connection.fetchall()
         print('row added!')
-    except:
-        print('error in line: ',pre_processing)
+    except Exception as e:
+        print('error when add register in databse\n',e,'\n',pre_processing)
+        db_connection.close()
+        # print('error in line: ',)
 
 
