@@ -1,4 +1,13 @@
 from flask import jsonify
+
+"""
+biblioteca criada para desenvolver função que manipulam arquivos json
+
+format_json(): recebe dados em formato de tupla e devolve a mesma lista em formato json
+
+order_json_data(): recebe dados em formato json que estao desordenados e retorna a mesma lista json com ordenacao necessaria para inserir dados na tabela books
+"""
+
 #convert tuple  in json data
 def format_json(raw_objects):
     _formated_data= list()
