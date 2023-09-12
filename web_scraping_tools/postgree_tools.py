@@ -30,6 +30,8 @@ def postgree_connect():
         print('Connection failed!!\nplease check your connection file\n',e)
         return
 
+""" start book functions"""
+
 #Returns all registers in the database
 def get_books(db_connection):
     _connection = (
@@ -178,6 +180,39 @@ def delete_books(db_connection,id):
     except Exception as e:
         print('error when delete register in databse\n',e,'\n',data)
     db_connection.close()
+
+
+
+""" end book functions"""
+
+def insert_client_data(db_connection, data):
+    _pre_processing = tuple(data.values())
+    insert_template = ("""
+    INSERT INTO clients    
+    (DATE_REGISTER,NAME,EMAIL,DDD,CELL,CPF,COMPLEMENT,STREETS,CITY,UF,CEP) 
+    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """)
+    # execute the command in the database
+    try:
+        (
+            db_connection
+            .cursor()
+            .execute(insert_template, _pre_processing)
+        )
+
+        # write the alteration in the database;
+        (
+            db_connection
+            .commit()
+        )
+
+        # db_connection.fetchall()
+        print('row added!')
+    except Exception as e:
+        print('error when add register in databse\n', e, '\n', _pre_processing)
+
+    db_connection.close()
+
 
 
 
