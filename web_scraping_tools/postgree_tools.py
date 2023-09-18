@@ -30,9 +30,9 @@ def postgree_connect():
         print('Connection failed!!\nplease check your connection file\n',e)
         return
 
-""" start book functions"""
+""" start book table functions"""
 
-#Returns all registers in the database
+"""Returns all registers in the database"""
 def get_books(db_connection):
     _connection = (
         db_connection
@@ -45,7 +45,7 @@ def get_books(db_connection):
     )
     return _connection.fetchall()
 
-#Returns registers based in id
+"""Returns registers based in id"""
 def get_books_by_id(db_connection, id):
     _connection = (
         db_connection
@@ -183,9 +183,43 @@ def delete_books(db_connection,id):
 
 
 
-""" end book functions"""
+""" end book table functions"""
 
-def insert_client_data(db_connection, data):
+""" start client table functions"""
+
+"""Returns all registers in the database"""
+def get_clients(db_connection):
+    _connection = (
+        db_connection
+        .cursor()
+    )
+    (
+        _connection
+        .execute('select * from clients')
+
+    )
+    return _connection.fetchall()
+
+"""Returns registers based in id"""
+def get_clients_by_id(db_connection, id):
+    _connection = (
+        db_connection
+        .cursor()
+    )
+    _select_template = (
+        """
+        SELECT * 
+        FROM clients
+        WHERE ID_CLIENT = %s
+        """
+    )
+    (_connection
+     .execute(_select_template, id)
+     )
+
+    return _connection.fetchall()
+
+def insert_clients_data(db_connection, data):
     _pre_processing = tuple(data.values())
     insert_template = ("""
     INSERT INTO clients    
@@ -209,10 +243,75 @@ def insert_client_data(db_connection, data):
         # db_connection.fetchall()
         print('row added!')
     except Exception as e:
-        print('error when add register in databse\n', e, '\n', _pre_processing)
+        print('error when add register in database\n', e, '\n', _pre_processing)
 
+    db_connection.close()
+
+def update_clients_data(db_connection, data):
+    _update_template = (
+        """
+        UPDATE clients
+        SET 
+        DATE_REGISTER= %s,
+        NAME= %s,
+        EMAIL= %s,
+        DDD= %s,
+        CELL= %s,
+        CPF= %s,
+        COMPLEMENT= %s,
+        STREETS= %s,
+        CITY= %s,
+        UF= %s,
+        CEP= %s
+        WHERE ID_CLIENT = %s
+        """
+    )
+    try:
+        (
+            db_connection
+            .cursor()
+            .execute(_update_template, data)
+        )
+
+        # write the alteration in the database;
+        (
+            db_connection
+            .commit()
+        )
+
+        db_connection.close()
+        return ('row updated!')
+    except Exception as e:
+        db_connection.close()
+        return (f'error when update register in databse\n{e}\n{data}')
+
+def delete_clients(db_connection,id):
+    _delete_template=(
+        """
+        DELETE 
+        FROM clients 
+        WHERE ID_CLIENT = %s
+        """
+    )
+    try:
+        (
+            db_connection
+            .cursor()
+            .execute(_delete_template,id)
+        )
+
+        #write the alteration in the database;
+        (
+            db_connection
+            .commit()
+        )
+
+        # db_connection.fetchall()
+        print('row deleted!')
+    except Exception as e:
+        print('error when delete register in databse\n',e,'\n',data)
     db_connection.close()
 
 
 
-
+""" end client table functions"""
