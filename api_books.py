@@ -1,8 +1,12 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from web_scraping_tools.postgree_tools import *
 from json_tools.Jtools import *
+
 app = Flask(__name__)
 
+#enabling CORS to all requests
+CORS(app)
 """start books routes"""
 #insert new books in the database
 @app.route('/books',methods = ['POST'])
@@ -97,7 +101,5 @@ def delete_clients_by_id(id):
 
 
 """end client routes"""
-
-
 
 app.run(port=5000,host='localhost',debug=True)
