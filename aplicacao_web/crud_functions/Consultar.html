@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>Consulta</title>
+</head>
+<body>
+     <!-- Criamos um formulário para consulta -->
+    <form name="Consultar">
+        <p2>Buscando dados através id do cliente:</p2><br/><br/>        
+        <!-- RA precisa, pois através dele(RA) para buscar dados -->
+        ID_CLIENT: <br/>
+        <input type="text" name="IdClient">
+        <br/>
+        DATE_REGISTER: <br/>
+        <input type="text" name="DateRegister">
+        <br/>
+        NAME: <br/>
+        <input type="text" name="Name">
+        <br/>
+        EMAIL: <br/>
+        <input type="text" name="Email">
+        <br/>
+        DDD: <br/>
+        <input type="text" name="DDD">
+        <br/>
+        CELL: <br/>
+        <input type="text" name="Cell">
+        <br/>
+        CPF: <br/>
+        <input type="text" name="Cpf">
+        <br/>
+        COMPLEMENT: <br/>
+        <input type="text" name="Complement">
+        <br/>
+        STREETS: <br/>
+        <input type="text" name="Streets">
+        <br/>
+        CITY: <br/>
+        <input type="text" name="City">
+        <br/>
+        UF: <br/>
+        <input type="text" name="Uf">
+        <br/>
+        <br/>
+        CEP: <br/>
+        <input type="text" name="Cep">
+        <br/>
+
+        
+        
+        <br/>
+        <input type="button" name="btBuscar" value="Consultar" onclick="consultarLivros(event, this)">
+        <!-- Criamos um butao para limpar os campos -->
+        <input type="reset" value="Limpar">
+        <br/>        
+    </form>
+    <!-- Iniciamos programação JavaScript -->
+    <script type="text/javascript" src="funcoes_crud.js"></script>
+    <!--<script type="text/javascript">
+        //Criamos uma função (subprograma) para buscar os dados no BD (xampp-MySQL)
+        function buscar(event, form){
+            //Este comando é para prevenir o cancelamento de evento: evento de click->buscar os dados
+            event.preventDefault();
+            //variável ra é um número inteiro. parseInt(...) transformar texto para inteiro
+            const ra = parseInt(document.Consultar.txtRA.value);   
+           
+            if ( ra != "" ) { //RA não pode ser null, pois através dele para buscar dados
+                    //Endereço do api que construimos
+                    const URL = 'http://localhost:5000/clients'+ra;
+                    //fetch(URL , options)
+                    fetch( URL , {method: 'GET'} )                        
+                        /*Uma Arrow function é exatamente como uma função/callback normal */ 
+                        //para transformar a resposta de texto puro para JSON  
+                        .then(resp => resp.json())                                    
+                        .then(data => mostrarResposta(data))
+                        //Além disso podemos utilizar o método catch() para tratar erros.
+                        //e a mensagem de erros estará console
+                        .catch(erro => console.log(erro));            
+            }
+        }
+        //Uma função para mostar uma mensagem e os dados buscados
+        function mostrarResposta(data){
+            alert("Dados buscados com sucesso !!"); //pode ter ou não
+            console.log(data) ;
+            //colocando os dados buscados nos campos do formulário  
+            document.Consultar.txtNome.value = data.information.nome;
+            document.Consultar.txtEmail.value = data.information.email;
+            document.Consultar.txtTelefone.value = data.information.telefone;          
+        }
+    </script> -->
+</body>
+</html>
