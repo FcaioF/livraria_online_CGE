@@ -67,7 +67,7 @@ def edit_book_data(id):
     funcao realiza a
     alteracao de registro na tabela books
     """
-    raw_edit_data = return_book_json_values(request.get_json())
+    raw_edit_data = return_book_json_values(request.get_json(),'edit')
     _updated_data = update_book_data(postgree_connect(),raw_edit_data,id)
     return jsonify(api_return= str(_updated_data))
 
