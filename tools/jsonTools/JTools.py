@@ -23,7 +23,16 @@ DS_BOOK_STAR
 import datetime
 import secrets
 
-def return_book_json_values(json_file):
+def return_book_json_values(json_file,operation = 'insert'):
+    """
+    Recebe um arquivo json
+    ordena seguindo o schema da tabela books
+    e devolve os valores em formato de tupla
+
+    @param operation:
+    'insert': retorna todos os campos da tabela insert
+    'update': retorna somente campos que serão alterados do registro
+    """
     def calculate_tax(base_price):
         """
         insere  15% de taxa
@@ -43,25 +52,31 @@ def return_book_json_values(json_file):
         caracteres aleatoriamente
         """
         return secrets.token_hex(8)
-    """
-    Recebe um arquivo json
-    ordena seguindo o schema da tabela books
-    e devolve os valores em formato de tupla
-    """
-    order_json = {
-        "DT_PROCESS_DATE": str(datetime.datetime.now()),
-        "DS_BOOK_CATEGORY": json_file['DS_BOOK_CATEGORY'],
-        "DS_BOOK_TITLE": json_file['DS_BOOK_TITLE'],
-        "NR_BOOK_PRICE": json_file['NR_BOOK_PRICE'],
-        "DS_BOOK_DESCRIPTION": json_file['DS_BOOK_DESCRIPTION'],
-        "NR_UPC_NUMBER": gen_upc_number(),
-        "TP_PRODUCT_TYPE": 'books',
-        "NR_NO_TAX_PRICE": json_file['NR_BOOK_PRICE'],
-        "NR_W_TAX_PRICE": calculate_tax(json_file['NR_BOOK_PRICE']),
-        "NR_TOTAL_AVAILABLE": json_file['NR_TOTAL_AVAILABLE'],
-        "DS_BOOK_STAR": "0" #por se tratar de um livro novo sempre inicia com 0
+    if(operation == 'insert'):
+        order_json = {
+            "DT_PROCESS_DATE": str(datetime.datetime.now()),
+            "DS_BOOK_CATEGORY": json_file['DS_BOOK_CATEGORY'],
+            "DS_BOOK_TITLE": json_file['DS_BOOK_TITLE'],
+            "NR_BOOK_PRICE": json_file['NR_BOOK_PRICE'],
+            "DS_BOOK_DESCRIPTION": json_file['DS_BOOK_DESCRIPTION'],
+            "NR_UPC_NUMBER": gen_upc_number(),
+            "TP_PRODUCT_TYPE": 'books',
+            "NR_NO_TAX_PRICE": json_file['NR_BOOK_PRICE'],
+            "NR_W_TAX_PRICE": calculate_tax(json_file['NR_BOOK_PRICE']),
+            "NR_TOTAL_AVAILABLE": json_file['NR_TOTAL_AVAILABLE'],
+            "DS_BOOK_STAR": "0" #por se tratar de um livro novo sempre inicia com 0
 
-    }
+        }
+    else:
+        order_json = {
+            "DS_BOOK_CATEGORY": json_file['DS_BOOK_CATEGORY'],
+            "DS_BOOK_TITLE": json_file['DS_BOOK_TITLE'],
+            "NR_BOOK_PRICE": json_file['NR_BOOK_PRICE'],
+            "DS_BOOK_DESCRIPTION": json_file['DS_BOOK_DESCRIPTION'],
+            "NR_TOTAL_AVAILABLE": json_file['NR_TOTAL_AVAILABLE'],
+
+        }
+
     formated_data = tuple(order_json.values())
 
     return formated_data
