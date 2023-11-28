@@ -78,17 +78,11 @@ def update_book_data(db_connection, data , id):
     _update_template = (
         """
         UPDATE books
-        SET DT_PROCESS_DATE = %s,
-            DS_BOOK_CATEGORY = %s,
+        SET DS_BOOK_CATEGORY = %s,
             DS_BOOK_TITLE = %s,
             NR_BOOK_PRICE = %s,
             DS_BOOK_DESCRIPTION = %s,
-            NR_UPC_NUMBER = %s,
-            TP_PRODUCT_TYPE = %s,
-            NR_NO_TAX_PRICE = %s,
-            NR_W_TAX_PRICE = %s,
-            NR_TOTAL_AVAILABLE = %s,
-            DS_BOOK_STAR = %s
+            NR_TOTAL_AVAILABLE = %s
         WHERE id_book = %s
         """
     )
