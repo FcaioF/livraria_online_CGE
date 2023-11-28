@@ -1,0 +1,159 @@
+body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images3.alphacoders.com/123/1232833.jpg') no-repeat center center fixed; /* Substitua pela URL da sua imagem */
+            background-size: cover;
+            color: #fff; /* Cor do texto geral na página */
+        }
+
+        header {
+            background-color: #2c3e50; /* Cor de fundo do cabeçalho */
+            color: #ecf0f1; /* Cor do texto do cabeçalho */
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #34495e; /* Cor de fundo da barra de navegação */
+            padding: 10px;
+        }
+
+        nav button {
+            background-color: #2c3e50; /* Cor de fundo dos botões de navegação */
+            color: #ecf0f1; /* Cor do texto dos botões de navegação */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #ecf0f1; /* Cor de fundo da tabela */
+            border-radius: 10px; /* Cantos arredondados */
+            overflow: hidden; /* Para esconder as bordas arredondadas em alguns navegadores */
+        }
+
+        th, td {
+            border: 1px solid #bdc3c7; /* Cor das bordas das células da tabela */
+            padding: 12px;
+            text-align: left;
+            color: black;
+        }
+
+        th {
+            background-color: #106299; /* Cor de fundo do cabeçalho da tabela */
+            color: #ffffff; /* Cor do texto do cabeçalho da tabela */
+            border-radius: 8px;
+        }
+
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        form input {
+            padding: 10px;
+            margin-right: 10px;
+            flex-grow: 1;
+            border: 1px solid #bdc3c7; /* Cor da borda dos campos do formulário */
+            border-radius: 5px; /* Cantos arredondados dos campos do formulário */
+        }
+
+        form button {
+            background-color: #2ecc71; /* Cor de fundo do botão de inserção */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px; /* Cantos arredondados do botão de inserção */
+        }
+
+        /* Imagem de livro no canto superior direito */
+        .livro-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+            opacity: 0.8; /* Opacidade da imagem */
+
+
+        }
+
+        /* Nova classe para imagem no canto superior direito */
+        .livro-image-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+            opacity: 0.8;
+        }
+
+        /* Nova classe para imagem no canto superior esquerdo */
+        .livro-image-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Cor escura com 50% de opacidade */
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        header h1 {
+            animation: swing 3s infinite; /* Ajuste a duração conforme necessário */
+        }
+
+        @keyframes entradaSaida {
+            0% {
+                transform: translateX(100%) translateY(100%);
+            }
+            50% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
+        }
+
+        .raposa {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 150px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+            animation: entradaSaida 8s infinite; /* Ajuste a duração conforme necessário */
+            transform: scaleX(-1); /* Inverte horizontalmente a imagem */
+        }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo_consulta.css">
+    <title>Livraria Online CGE</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Livraria Online CGE</h1>
+    </header>
+
+        <!-- Imagem do canto superior direito -->
+        <img src="https://cdn-icons-png.flaticon.com/512/5832/5832416.png" alt="Livros" class="livro-image-right">
+
+        <!-- Imagem do canto superior esquerdo -->
+        <img src="https://images.vexels.com/media/users/3/322236/isolated/preview/3aa5e111655241b6abdb6be25d4cf252-pilha-de-livros-com-uma-maa-a-e-um-la-pis-em-cima.png" alt="Livros 2" class="livro-image-left">
+        
+        <!-- Imagem da raposa -->
+        <img src="https://cdn-icons-png.flaticon.com/512/8686/8686332.png" alt="Raposa" class="raposa">        
+
+    <nav>
+        <button onclick="window.location.href='PAGINA3CLIENTES.html'">Visualizar Clientes</button>
+        <button onclick="window.location.href='PAGINA5VENDAS.html'">Visualizar Pedidos</button>
+        <div>
+            <label for="livroId">ID do Livro:</label>
+            <input type="text" id="livroId" placeholder="Digite o ID do Livro">
+            <button onclick="deletarLivro(event, this)">Excluir</button>
+        </div>
+        <button onclick="window.location.href='PAGINA2EDITARLIVROS.html'">Editar</button>
+    </nav>
+
+    <form id="formularioInserirLivro" name="formularioInserirLivro">
+        <input type="text" id="inserirTitulo" placeholder="Título">
+        <input type="text" id="inserirCategoria" placeholder="Categoria">
+        <input type="text" id="inserirPreco" placeholder="Preço">
+        <input type="text" id="inserirDescricao" placeholder="Descrição">
+        <input type="text" id="inserirTotalDisponivel" placeholder="Total Disponível">
+
+        <!-- Adicione mais campos conforme necessário -->
+        <button onclick="inserirLivro(event, this)">Inserir</button>
+    </form>
+
+<table id="tabelaLivros">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data de Inserção</th>
+            <th>Categoria</th>
+            <th>Título</th>
+            <th>Preço</th>
+            <th>Descrição</th>
+            <th>Número UPC</th>
+            <th>Tipo de Produto</th>
+            <th>Preço Sem Taxa</th>
+            <th>Preço Com Taxa</th>
+            <th>Total Disponível</th>
+            <th>Avaliação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dados da API serão inseridos aqui dinamicamente -->
+    </tbody>
+</table>
+<script type="text/javascript" src="funcoes_home_livros.js"></script>
+
+</body>
+</html>
