@@ -2,7 +2,7 @@
 
 
 Este projeto tem como objetivo extrair informações sobre livros do site https://books.toscrape.com/
-armazenar esses dados em uma banco de dados relacional e disponibilizar para consumo atraves de uma api,  
+armazenar esses dados em uma banco de dados relacional PostgreSQL e disponibilizar para consumo atraves de uma api,  
 
 
 a pagina web conta com 51 categorias de livros,
@@ -19,7 +19,7 @@ Os dados extraídos incluem:
 * Total de livros disponiveis
 * avaliação do livro (1 a 5 estrelas) 
 
-Os dados são armazenados em tempo real na base de dados postgres que possui tabela books com schema: 
+Os dados são armazenados em tempo real na base de dados PostgreSQL que possui tabela books com schema: 
 
 - ID_BOOK SERIAL PRIMARY KEY
 - DT_PROCESS_DATE TIMESTAMP NOT NULL
